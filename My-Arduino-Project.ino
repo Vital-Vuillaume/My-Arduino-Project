@@ -1,4 +1,5 @@
-int ledRed = 3, ledYellow = 6, ledGreen = 8, comp = 7, time1 = 500;
+int ledRed = 3, ledYellow = 6, ledGreen = 8, comp = 7, time1 = 200;
+bool r = false;
 
 void setup() {
   pinMode(ledRed, OUTPUT);
@@ -8,22 +9,21 @@ void setup() {
 }
 
 void loop() {
-  if(digitalRead(comp) == HIGH) {
+  if(digitalRead(comp) == HIGH){
+    r = !r;
+  }
+  if(r) {
     digitalWrite(ledRed, HIGH);
     digitalWrite(ledYellow, LOW);
     digitalWrite(ledGreen, LOW);
-    delay(time1);
-    digitalWrite(ledYellow, HIGH);
     delay(time1);
     digitalWrite(ledRed, LOW);
-    digitalWrite(ledYellow, LOW);
-    digitalWrite(ledGreen, HIGH);
-    delay(time1*4);
-    digitalWrite(ledYellow, HIGH);
-    digitalWrite(ledGreen, LOW);
     delay(time1);
-    digitalWrite(ledRed, HIGH);
-    digitalWrite(ledYellow, LOW);
-    delay(time1*4);
+  }
+  else {
+    digitalWrite(ledRed, LOW);
+    digitalWrite(ledYellow, HIGH);
+    digitalWrite(ledGreen, HIGH);
+    delay(time1);
   }
 }
